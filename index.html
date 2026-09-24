@@ -87,6 +87,12 @@ header.top{position:sticky;top:env(safe-area-inset-top,0px);z-index:30;backgroun
 .tri i:nth-child(2){animation-delay:.3s;background:var(--info)}
 .tri i:nth-child(3){animation-delay:.6s;background:var(--accent)}
 @keyframes tri{0%,60%,100%{transform:scale(1);opacity:1}30%{transform:scale(1.55);opacity:.55}}
+.thm{width:30px;height:30px;border-radius:50%;border:1px solid var(--line);background:var(--surface);color:var(--sub);display:grid;place-items:center;padding:0;flex:none}
+.thm .ic{width:15px;height:15px}
+.thm:active{transform:scale(.92)}
+@media (max-width:400px){.brand .ko{display:none}.livepill{padding-inline:6px 8px}}
+@media (max-width:372px){.lpx{display:none}.btn{font-size:13px;padding-inline:10px}.brand .wm{letter-spacing:.12em}}
+.livepill,.btn{white-space:nowrap}
 .demo{border:1px solid var(--line);background:none;border-radius:999px;padding:3px 9px;font-size:10.5px;font-weight:600;letter-spacing:.1em;color:var(--faint)}
 .roles{display:grid;grid-template-columns:repeat(3,1fr);gap:3px;background:var(--surface-3);border-radius:11px;padding:3px}
 .roles button{border:0;background:none;border-radius:8px;padding:6px 4px;font-size:13px;font-weight:500;color:var(--sub);display:flex;align-items:center;justify-content:center;gap:6px}
@@ -502,6 +508,35 @@ nav.tabs button[aria-current="page"]::before{content:"";position:absolute;top:0;
 .switch{display:flex;align-items:center;justify-content:space-between;font-size:13px}
 .switch input{width:20px;height:20px;accent-color:var(--accent)}
 
+[hidden]{display:none!important}
+/* 단가 협의 보드 */
+.badge{display:inline-grid;place-items:center;min-width:16px;height:16px;border-radius:8px;background:var(--bad);color:#fff;font-size:10px;font-weight:700;padding:0 4px;margin-left:2px}
+.nsteps{display:grid;grid-template-columns:repeat(4,1fr);gap:5px}
+.nsteps div{display:flex;flex-direction:column;gap:5px;font-size:11px;color:var(--faint);min-width:0}
+.nsteps i{height:4px;border-radius:2px;background:var(--line)}
+.nsteps .done{color:var(--ink-2)} .nsteps .done i{background:var(--ok)}
+.nsteps .cur{color:var(--ink);font-weight:600} .nsteps .cur i{background:var(--accent);animation:blink 1.6s ease-in-out infinite}
+@keyframes blink{50%{opacity:.4}}
+table.t.tier{min-width:0}
+table.t.tier th{vertical-align:bottom;line-height:1.3;padding:6px 4px} table.t.tier th small{display:block;font-size:10.5px;color:var(--faint);font-weight:400}
+table.t.tier th b{font-weight:600;color:var(--sub)}
+table.t.tier td{padding:9px 4px} table.t.tier td:first-child{word-break:keep-all;padding-right:6px}
+table.t.tier th .was{display:block;margin:0}
+.was{text-decoration:line-through;color:var(--faint);font-weight:400;margin-right:4px}
+.chg{color:var(--accent);font-weight:600}
+.evid{background:var(--accent-bg);border:1px solid var(--accent-line);border-radius:13px;padding:11px 12px;display:flex;flex-direction:column;gap:8px}
+.evh{display:flex;align-items:center;gap:6px;color:var(--accent)} .evh b{font-size:13px;font-weight:600} .evh .hint{margin-left:auto}
+.evg{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.evg div{background:var(--surface);border-radius:10px;padding:8px 10px;display:flex;flex-wrap:wrap;align-items:baseline;gap:3px;min-width:0}
+.evg div:first-child{grid-column:1/-1}
+.evg .k{font-size:11px;color:var(--sub);width:100%} .evg .k.u{width:auto}
+.evg b{font-size:18px;font-weight:600;color:var(--ink)}
+.thread{display:flex;flex-direction:column;gap:8px}
+.msg{border-radius:12px;padding:9px 11px;background:var(--surface-2);font-size:12.5px;border-left:3px solid var(--line)}
+.msg.dealer{border-left-color:var(--info)} .msg.coop{border-left-color:var(--ok)} .msg.sys{border-left-color:var(--accent)}
+.msg .mh{display:flex;justify-content:space-between;gap:8px;margin-bottom:2px} .msg .mh b{font-weight:600;font-size:12px} .msg .mh span{color:var(--faint);font-size:11px;white-space:nowrap}
+.msg p{margin:0;color:var(--ink-2);line-height:1.55}
+.who .chip .ic{width:11px;height:11px}
 #tip{position:fixed;z-index:70;pointer-events:none;background:var(--ink);color:var(--bg);font-size:12px;font-weight:500;border-radius:8px;padding:6px 9px;box-shadow:var(--shadow-pop);white-space:nowrap}
 
 @media (prefers-reduced-motion:reduce){
@@ -518,7 +553,8 @@ nav.tabs button[aria-current="page"]::before{content:"";position:absolute;top:0;
         <span class="wm">CARTOS</span><span class="ko">카토스</span>
       </button>
       <div class="hdr-r">
-        <button class="livepill" data-act="live" aria-label="3개사 실시간 연결 현황"><span class="tri" aria-hidden="true"><i></i><i></i><i></i></span>3개사 실시간</button>
+        <button class="livepill" data-act="live" aria-label="3개사 실시간 연결 현황"><span class="tri" aria-hidden="true"><i></i><i></i><i></i></span><span class="lpx">3개사 </span>실시간</button>
+        <button class="thm" id="thm" data-act="theme" aria-label="화면 테마 바꾸기"></button>
         <button class="demo" data-act="settings" aria-label="시연 설정">DEMO</button>
       </div>
     </div>
@@ -646,7 +682,7 @@ var S={
   seq:18, dShop:null, dGu:null, dFind:'map', dQty:[2,1,0], q:'',
   cGu:null, calc:12, joined:false, tour:null,
   cal:{shop:{m:9,d:22},dealer:{m:10,d:2},coop:{m:9,d:30}},
-  ledgerView:'cal', feed:[], simN:0
+  ledgerView:'cal', feed:[], simN:0, cset:'settle'
 };
 S.cart=[16,7,3];
 
@@ -706,7 +742,10 @@ var ICON={
   gauge:'<path d="M4 17a8 8 0 1 1 16 0"/><path d="M12 17l4-5"/>',
   shield:'<path d="M12 3l8 3v6c0 4.4-3.4 8.2-8 9-4.6-.8-8-4.6-8-9V6z"/><path d="M8.5 12l2.5 2.5 4.5-5"/>',
   gear:'<circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.7 1.7 0 0 0 .3 1.8l.1.1a2 2 0 1 1-2.8 2.8l-.1-.1a1.7 1.7 0 0 0-1.8-.3 1.7 1.7 0 0 0-1 1.5V21a2 2 0 1 1-4 0v-.1a1.7 1.7 0 0 0-1.1-1.5 1.7 1.7 0 0 0-1.8.3l-.1.1a2 2 0 1 1-2.8-2.8l.1-.1a1.7 1.7 0 0 0 .3-1.8 1.7 1.7 0 0 0-1.5-1H3a2 2 0 1 1 0-4h.1a1.7 1.7 0 0 0 1.5-1.1 1.7 1.7 0 0 0-.3-1.8l-.1-.1a2 2 0 1 1 2.8-2.8l.1.1a1.7 1.7 0 0 0 1.8.3H9a1.7 1.7 0 0 0 1-1.5V3a2 2 0 1 1 4 0v.1a1.7 1.7 0 0 0 1 1.5 1.7 1.7 0 0 0 1.8-.3l.1-.1a2 2 0 1 1 2.8 2.8l-.1.1a1.7 1.7 0 0 0-.3 1.8V9a1.7 1.7 0 0 0 1.5 1H21a2 2 0 1 1 0 4h-.1a1.7 1.7 0 0 0-1.5 1z"/>',
-  alert:'<path d="M12 4l9 16H3z"/><path d="M12 10v4M12 17h.01"/>'
+  alert:'<path d="M12 4l9 16H3z"/><path d="M12 10v4M12 17h.01"/>',
+  tag:'<path d="M3 12V4h8l9.5 9.5a1.5 1.5 0 0 1 0 2.1l-5.9 5.9a1.5 1.5 0 0 1-2.1 0z"/><circle cx="7.5" cy="8.5" r="1.4"/>',
+  sun:'<circle cx="12" cy="12" r="4"/><path d="M12 2.5v2M12 19.5v2M4.2 4.2l1.4 1.4M18.4 18.4l1.4 1.4M2.5 12h2M19.5 12h2M4.2 19.8l1.4-1.4M18.4 5.6l1.4-1.4"/>',
+  moon:'<path d="M20 14.5A8 8 0 0 1 9.5 4a8 8 0 1 0 10.5 10.5z"/>'
 };
 function ic(n,cls){return '<svg class="ic'+(cls?' '+cls:'')+'" viewBox="0 0 24 24" aria-hidden="true">'+ICON[n]+'</svg>';}
 
@@ -729,7 +768,7 @@ function coopBars(){
     s+='<text class="ml'+(last?' on':'')+'" x="'+(x+bw/2)+'" y="'+(H-5)+'" text-anchor="middle">'+MONTHS[i]+'</text>';
     if(last)s+='<text class="vl" x="'+(x+bw/2)+'" y="'+(y(v)-7)+'" text-anchor="middle">'+won(v)+'L</text>';
   });
-  s+='<line class="tier" x1="'+L+'" x2="'+(W-R)+'" y1="'+y(TIER)+'" y2="'+y(TIER)+'"/><text class="tierl" x="'+(L+4)+'" y="'+(y(TIER)-6)+'">다음 단가 구간 5,000L (협상 예시)</text>';
+  var TT=tierNow();s+='<line class="tier" x1="'+L+'" x2="'+(W-R)+'" y1="'+y(TT)+'" y2="'+y(TT)+'"/><text class="tierl" x="'+(L+4)+'" y="'+(y(TT)-6)+'">'+(NEG.status==='agreed'?'2구간 '+won(TT)+'L · '+NEG.eff+' 시행':'2구간 '+won(TT)+'L (단가 협의 중)')+'</text>';
   return s+'</svg>';
 }
 
@@ -832,7 +871,7 @@ function scheduledOn(m,d,filterShop){
   if(m!==10)return [];
   return SHOPS.filter(function(s){return s.stand&&s.stand===d&&d>TODAY.d&&(!filterShop||s.id===filterShop);});
 }
-var MILE={'9-30':'9월 마감','10-1':'월 거래내역 승인 요청','10-5':'총판 정산서 제출','10-12':'단가 보전 지급'};
+var MILE={'9-30':'9월 마감','10-1':'월 거래내역 승인 요청','10-5':'총판 정산서 제출','10-12':'총판·대리점 간 정산'};
 function calendar(mode){
   var st=S.cal[mode],m=st.m,first=dowOf(m,1),n=daysIn(m),sel=st.d;
   var heat={},hmax=1;
@@ -963,7 +1002,7 @@ V.shop_home=function(){
     '<section class="card"><div class="cardh"><h2>재고 예측</h2><span class="sub">최근 사용량 기준</span></div><div class="stk">'+stk+'</div><p class="hint">점선 = 다음 정기 발주 입고(10/5)까지 3일. 모든 규격이 입고 전까지 충분합니다.</p></section>'+
     '<section class="card tight"><div class="cardh"><h2>9월 절감액</h2><span class="sub">시중 매입가 대비</span></div><div class="stat"><span class="v">'+cnt(hist[5],'won','원')+'</span><span class="hint">올해 누적 '+won(sum(hist))+'원 · 통당 평균 '+won(hist[5]/26)+'원</span></div>'+spark(hist,MONTHS)+'</section>'+
     '<section class="card tight"><div class="cardh"><h2>월 거래내역 승인</h2><span class="sub">10/1 요청</span></div>'+sep+'</section>'+
-    '<div class="notice">'+ic('bell')+'<div><b>협동조합 공지</b> · 10월 협정가는 9월과 동일하게 유지됩니다. 11월 동절기 부동액 공동구매 수요 조사를 10/15까지 진행합니다.</div></div>'+foot();
+    '<div class="notice">'+ic('bell')+'<div><b>협동조합 공지</b> · '+(NEG.status==='agreed'?NEG.eff+'부터 구간 협정가가 시행됩니다. 전월 공동 물량이 '+won(negTh()[1])+'L 이상이면 '+SKU(0).name+' '+won(negPrice(0,1))+'원이 자동 적용됩니다.':'10월 협정가는 9월과 동일하게 유지됩니다. 11월 동절기 부동액 공동구매 수요 조사를 10/15까지 진행합니다.')+'</div></div>'+foot();
 };
 V.shop_order=function(){
   var q=S.cart,tong=sum(q);
@@ -972,7 +1011,7 @@ V.shop_order=function(){
       '<div class="step"><button data-act="cart-" data-i="'+i+'" aria-label="'+s.name+' 1통 감소" '+(q[i]?'':'disabled')+'>−</button><output>'+q[i]+'</output><button data-act="cart+" data-i="'+i+'" aria-label="'+s.name+' 1통 추가">+</button></div></div>'+
       '<div class="price"><span class="lbl">협정가</span><span class="deal">'+won(s.deal)+'<small>원</small></span><span class="norm">'+won(s.normal)+'원</span><span class="chip ok">통당 −'+won(save1(i))+'원</span></div></div>';}).join('');
   return ph('사장님 · 발주','협정가는 CARTOS 발주에<br>자동 적용됩니다','대리점에 전화로 주문하셔도 됩니다. 딜러가 대리 발주로 등록하면 같은 협정가가 적용됩니다.')+
-    '<section class="card">'+rows+'</section>'+
+    (NEG.status==='agreed'?'<div class="notice">'+ic('tag')+'<div><b>'+NEG.eff+'부터 구간 협정가</b> · 전월 공동 물량 '+won(negTh()[1])+'L 이상이면 자동으로 한 단계 낮은 협정가가 적용됩니다.</div></div>':'')+'<section class="card">'+rows+'</section>'+
     '<section class="card tight"><div class="sumline"><span>합계 '+tong+'통 · '+tong*L_PER+'L</span><b>'+won(dealT(q))+'원</b></div><div class="sumline"><span>시중 매입가 '+won(normT(q))+'원 대비</span><span class="save">−'+won(saveT(q))+'원</span></div>'+
       '<button class="btn primary block" data-act="order" data-tour="order" '+(tong?'':'disabled')+'>'+ic('cart')+'발주하기 · '+tong+'통</button><p class="hint">'+esc(CFG.dealer)+'(지정 대리점)가 다음 영업일 오전에 납품합니다.</p></section>'+foot();
 };
@@ -1067,9 +1106,9 @@ V.coop_dash=function(){
       '<div class="kpi" style="--kc:var(--bar)"><span class="k"><i></i>9월 공동 물량</span><span class="v">'+cnt(sepL(),'won','L')+'</span><span class="d">'+sepTong()+'통 · 전월 대비 +'+won(cl[5]-cl[4])+'L</span></div>'+
       '<div class="kpi" style="--kc:var(--ok)"><span class="k"><i></i>회원사 절감액</span><span class="v">'+cnt(save,'man','만 원')+'</span><span class="d">연 환산 '+man(save*12)+'만 원</span></div>'+
       '<div class="kpi" style="--kc:var(--accent)"><span class="k"><i></i>참여 회원사</span><span class="v">12<small>곳 / '+MEMBERS_TOTAL+'</small></span><span class="d">참여 기준 충족 '+ok+'곳</span></div>'+
-      '<div class="kpi" style="--kc:var(--steel)"><span class="k"><i></i>단가 보전 예정</span><span class="v">'+cnt(keep,'man','만 원')+'</span><span class="d">10/12(월) 대리점 지급</span></div>'+
+      '<div class="kpi" style="--kc:var(--steel)"><span class="k"><i></i>단가 협의</span><span class="v">'+(NEG.status==='agreed'?'합의<small>완료</small>':'1<small>건 진행 중</small>')+'</span><span class="d">'+NEG.title+' · '+NEG.eff+' 시행</span></div>'+
     '</div>'+
-    '<section class="card"><div class="cardh"><h2>월별 공동 물량</h2><span class="sub">리터</span></div>'+coopBars()+'<p class="hint">다음 단가 구간까지 '+won(TIER-sepL())+'L. 원장에 기록된 물량이 다음 협상의 근거가 됩니다.</p></section>'+
+    '<section class="card"><div class="cardh"><h2>월별 공동 물량</h2><span class="sub">리터</span></div>'+coopBars()+'<p class="hint">2구간('+won(tierNow())+'L)까지 '+won(Math.max(0,tierNow()-sepL()))+'L. 원장에 기록된 물량이 단가 협상의 근거가 됩니다.</p></section>'+
     '<section class="card"><div class="cardh"><h2>규격 집중도</h2><span class="sub">9월 · '+sepTong()+'통</span></div>'+donut(sb,[SKU(0).name,SKU(1).name,SKU(2).name],[SKU(0).note,SKU(1).note,SKU(2).note],pct(sb[0]+sb[1],sepTong())+'%','상위 2개 규격')+'<p class="hint">같은 물량이라도 규격이 한두 가지로 모일수록 단가 협상이 유리합니다.</p></section>'+
     '<section class="card"><div class="cardh"><h2>9월 거래내역 승인</h2><span class="sub">정산 전 회원사 승인</span></div><div class="ringrow">'+ring(confirmed(),12,'승인 '+confirmed()+'/12')+'<div class="t"><b>'+(S.sepOk?'12곳 전원 승인':'12곳 중 '+confirmed()+'곳 승인')+'</b><span>'+(S.sepOk?'정산서를 총판에 제출할 수 있습니다':'미승인 1곳(해솔모터스)에 알림을 재발송했습니다')+'</span></div></div></section>'+foot();
 };
@@ -1091,22 +1130,27 @@ V.coop_cal=function(){
   return ph('협동조합 · 일정','발주 흐름과 정산 일정을<br>한 달력에서 봅니다','')+
     '<section class="card" data-tour="coopcal">'+calendar('coop')+'</section>'+foot();
 };
-V.coop_settle=function(){
+function coopSettleInner(seg){
   var sb=sepBySku();
   var steps=[
     {d:'9/30(수)',t:'9월 마감',s:'원장 '+SEP.length+'건 · '+sepTong()+'통',st:'done'},
     {d:'10/1(목)',t:'월 거래내역 승인 요청',s:'회원사별 본인 내역만 표시',st:'done'},
     {d:'10/2(금)',t:S.sepOk?'회원사 승인 12/12 완료':'회원사 승인 '+confirmed()+'/12',s:S.sepOk?'전원 승인':'미승인 회원사 알림 재발송',st:S.sepOk?'done':'cur'},
     {d:'10/5(월)',t:'총판 정산서 제출',s:'CARTOS 자동 작성본 제출',st:S.sepOk?'cur':''},
-    {d:'10/12(월)',t:'대리점 단가 보전 지급',s:'원장 수량 기준',st:''}
+    {d:'10/12(월)',t:'총판·대리점 간 정산',s:'협동조합 처리 없음',st:''}
   ];
   var tl=steps.map(function(x){return '<div class="tli '+x.st+'"><span class="nd">'+(x.st==='done'?ic('check'):'')+'</span><span class="tt">'+x.t+'<small>'+x.s+'</small></span><span class="dd">'+x.d+'</span></div>';}).join('');
-  var rows=[0,1,2].map(function(i){return '<tr><td>'+SKU(i).name+'</td><td>'+sb[i]+'</td><td>'+won(SKU(i).keep)+'</td><td>'+won(sb[i]*SKU(i).keep)+'</td></tr>';}).join('');
-  return ph('협동조합 · 월 정산','월 정산서는<br>원장에서 자동 작성됩니다','수기 집계나 엑셀 대조가 필요 없습니다. 원장에 기록된 발주가 그대로 정산서가 됩니다.')+
+  var rows=[0,1,2].map(function(i){return '<tr><td>'+SKU(i).name+'</td><td>'+sb[i]+'</td><td>'+won(SKU(i).deal)+'</td><td>'+won(sb[i]*SKU(i).deal)+'</td></tr>';}).join('');
+  return ph('협동조합 · 월 정산','월 정산서는<br>원장에서 자동 작성됩니다','수기 집계나 엑셀 대조가 필요 없습니다. 원장에 기록된 발주가 그대로 정산서가 됩니다.')+seg+
     '<section class="card"><div class="cardh"><h2>9월 정산 진행</h2><span class="sub">'+dlabel(10,2)+' 기준</span></div><div class="tl">'+tl+'</div></section>'+
-    '<section class="card"><div class="cardh"><h2>9월 단가 보전 내역</h2><span class="sub">'+esc(CFG.supplier)+' → '+esc(CFG.dealer)+'</span></div>'+
-      '<div class="tblwrap"><table class="t"><thead><tr><th>규격</th><th>원장 수량(통)</th><th>통당 보전</th><th>보전액(원)</th></tr></thead><tbody>'+rows+'</tbody><tfoot><tr><td>합계</td><td>'+sepTong()+'</td><td></td><td>'+won(keepT(sb))+'</td></tr></tfoot></table></div>'+
+    '<section class="card"><div class="cardh"><h2>9월 원장 수량 확정</h2><span class="sub">'+esc(CFG.supplier)+' 제출용</span></div>'+
+      '<div class="tblwrap"><table class="t tier"><thead><tr><th>규격</th><th>수량(통)</th><th>협정가</th><th>공급가액(원)</th></tr></thead><tbody>'+rows+'</tbody><tfoot><tr><td>합계</td><td>'+sepTong()+'</td><td></td><td>'+won(dealT(sb))+'</td></tr></tfoot></table></div>'+
       '<button class="btn dark block" data-act="paper" data-tour="paper">'+ic('doc')+'총판 제출용 정산서 미리보기</button></section>'+foot();
+}
+V.coop_settle=function(){
+  var v=S.cset||'settle';
+  var seg='<div class="seg" role="group" aria-label="보기"><button data-act="cset" data-v="settle" aria-pressed="'+(v==='settle')+'">'+ic('doc')+'월 정산</button><button data-act="cset" data-v="neg" aria-pressed="'+(v==='neg')+'">'+ic('tag')+'단가 협의'+(NEG.status==='proposed'?'<span class="badge">1</span>':'')+'</button></div>';
+  return v==='neg'?coopNeg(seg):coopSettleInner(seg);
 };
 V.coop_members=function(){
   var q=S.calc,m=q*avgSaveMix();
@@ -1129,8 +1173,8 @@ function calcPass(q){return q>=thresh()?'<b style="color:var(--ok);font-weight:6
 
 var TABS={
   shop:[{k:'home',l:'홈',i:'home'},{k:'order',l:'발주',i:'cart'},{k:'ledger',l:'원장',i:'cal'},{k:'report',l:'리포트',i:'report'}],
-  dealer:[{k:'entry',l:'대리 발주',i:'phone'},{k:'route',l:'배송',i:'truck'},{k:'settle',l:'사후정산',i:'scale'}],
-  coop:[{k:'dash',l:'현황',i:'chart'},{k:'map',l:'지도',i:'map'},{k:'cal',l:'일정',i:'cal'},{k:'settle',l:'정산',i:'doc'},{k:'members',l:'회원사',i:'users'}]
+  dealer:[{k:'entry',l:'대리 발주',i:'phone'},{k:'route',l:'배송',i:'truck'},{k:'settle',l:'사후정산',i:'scale'},{k:'price',l:'단가 협의',i:'tag'}],
+  coop:[{k:'dash',l:'현황',i:'chart'},{k:'map',l:'지도',i:'map'},{k:'cal',l:'일정',i:'cal'},{k:'settle',l:'정산·단가',i:'doc'},{k:'members',l:'회원사',i:'users'}]
 };
 
 /* 실시간 피드 */
@@ -1144,6 +1188,63 @@ function seedFeed(){
     {r:'shop',a:'바른정비',b:'정기 발주',c:'3통 · 협정가 적용',t:'07:00'},
     {r:'coop',a:'협동조합',b:'9월 거래내역 승인 요청',c:'회원사 12곳',t:'10/1'}
   ];
+}
+
+/* ================= 단가 협의 보드 (대리점 ↔ 협동조합 임원 · 2자 비공개) ================= */
+var NEG_OFF=[[0,3000,5000],[0,2000,3500],[0,2500,4000]];
+var NEG={no:'PR-2611-01',title:'11월 구간 협정가',eff:'11/1(일)',status:'proposed',th:[0,5000,7000],cth:null,agreeNo:null,
+  thread:[{by:'dealer',t:'10/1(목) 15:20',x:'총판 11월 정책을 받았습니다. 전월 공동 물량 구간별 협정가를 제안드립니다. 구간 판정은 전월 CARTOS 원장 물량 기준입니다.'}]};
+function negPrice(k,i){return SKU(k).deal-NEG_OFF[k][i];}
+function negTh(){return NEG.cth||NEG.th;}
+function tierNow(){return negTh()[1];}
+function negStatus(){return {proposed:['협동조합 검토 중','warn'],countered:['대리점 검토 중','info'],agreed:['합의 완료','ok']}[NEG.status];}
+function negEvidence(){
+  var cl=coopL(),trend=Math.round((cl[5]+(cl[5]-cl[3])/2)/10)*10,stand=0,n=0,sb=sepBySku();
+  SHOPS.forEach(function(s){if(s.stand){stand+=sum(s.sep);n++;}});
+  return {m3:[cl[3],cl[4],cl[5]],trend:trend,stand:stand*L_PER,standN:n,top2:pct(sb[0]+sb[1],sepTong())};
+}
+function negExtraSave(){var sb=sepBySku(),t=0;for(var k=0;k<3;k++){t+=sb[k]*(negPrice(k,0)-negPrice(k,1));}return t;}
+function evidBox(){var e=negEvidence();
+  return '<div class="evid"><div class="evh">'+ic('ledger')+'<b>원장 근거</b><span class="hint">CARTOS 자동 첨부</span></div><div class="evg">'+
+    '<div><span class="k">최근 3개월 공동 물량</span><b class="num">'+e.m3.map(won).join(' → ')+'</b><span class="k u">L</span></div>'+
+    '<div><span class="k">10월 추세 예상</span><b class="num">'+won(e.trend)+'</b><span class="k u">L</span></div>'+
+    '<div><span class="k">정기 발주 확정 물량</span><b class="num">'+won(e.stand)+'</b><span class="k u">L/월 · '+e.standN+'곳</span></div>'+
+    '<div><span class="k">상위 2규격 집중도</span><b class="num">'+e.top2+'</b><span class="k u">%</span></div></div></div>';}
+function tierTable(){
+  var th=NEG.th,c=NEG.cth,use=c||th;
+  var head='<th><b>1구간</b><small>'+won(use[1])+'L 미만</small></th>'+[1,2].map(function(i){var was=c&&c[i]!==th[i]?'<span class="was">'+won(th[i])+'</span>':'';return '<th><b>'+(i+1)+'구간</b><small>'+was+'<span class="'+(was?'chg':'')+'">'+won(use[i])+'L 이상</span></small></th>';}).join('');
+  var rows=[0,1,2].map(function(k){return '<tr><td>'+SKU(k).name+'</td>'+[0,1,2].map(function(i){return '<td>'+won(negPrice(k,i))+'</td>';}).join('')+'</tr>';}).join('');
+  return '<div class="tblwrap"><table class="t tier"><thead><tr><th><b>규격</b><small>20L 1통</small></th>'+head+'</tr></thead><tbody>'+rows+'</tbody></table></div><p class="hint">구간은 전월 공동 물량(원장 기준)으로 자동 판정됩니다. 1구간은 현재 협정가와 같습니다.</p>';
+}
+function negSteps(){
+  var idx=NEG.status==='proposed'?1:NEG.status==='countered'?2:3,lb=['대리점 제안','협동조합 검토','합의','시행'];
+  return '<div class="nsteps">'+lb.map(function(l,i){return '<div class="'+(i<idx?'done':i===idx?'cur':'')+'"><i></i><span>'+l+'</span></div>';}).join('')+'</div>';
+}
+function negThread(){
+  return '<div class="thread">'+NEG.thread.map(function(m){var who=m.by==='dealer'?CFG.dealer+' '+CFG.dealerPerson:m.by==='coop'?'협동조합 임원':'CARTOS';return '<div class="msg '+m.by+'"><div class="mh"><b>'+esc(who)+'</b><span>'+m.t+'</span></div><p>'+m.x+'</p></div>';}).join('')+'</div>';
+}
+function negCard(role){
+  var s=negStatus(),act;
+  if(NEG.status==='agreed')act='<div class="okbox">'+ic('check')+'<div>합의 완료 · '+NEG.agreeNo+'<span>'+NEG.eff+'부터 사장님 발주 화면에 자동 적용 · 회원사에는 확정 협정가만 공지됩니다</span></div></div>';
+  else if(role==='coop'&&NEG.status==='proposed')act='<div class="btns"><button class="btn primary" data-act="neg-counter" data-tour="negc">'+ic('ledger')+'원장 근거로 역제안</button><button class="btn" data-act="neg-accept">제안 수락</button></div>';
+  else if(role==='dealer'&&NEG.status==='countered')act='<div class="btns"><button class="btn primary" data-act="neg-accept">'+ic('check')+'역제안 수락</button><button class="btn" data-act="neg-memo">메모</button></div>';
+  else act='<div class="between"><span class="hint">'+(role==='dealer'?'협동조합 임원이 검토 중입니다.':'대리점이 검토 중입니다.')+'</span><button class="btn ghost" data-act="neg-memo">메모 남기기</button></div>';
+  return '<section class="card" data-tour="'+(role==='dealer'?'neg':'negcard')+'"><div class="cardh"><h2>'+NEG.title+'</h2><span class="chip '+s[1]+'">'+s[0]+'</span></div>'+
+    '<div class="who"><span>'+NEG.no+'</span><span class="dotsep"></span><span>시행 '+NEG.eff+'</span><span class="chip">'+ic('shield')+'2자 비공개</span></div>'+
+    negSteps()+tierTable()+(role==='coop'||NEG.cth?evidBox():'')+negThread()+act+'</section>';
+}
+V.dealer_price=function(){
+  var cur=[0,1,2].map(function(k){return '<tr><td>'+SKU(k).name+'</td><td>'+won(SKU(k).deal)+'</td><td>'+won(SKU(k).keep)+'</td></tr>';}).join('');
+  return ph('대리점 · 단가 협의','총판 조건을 받으면<br>협동조합과 여기서 합의합니다','협의 내용은 대리점과 협동조합 임원만 봅니다. 회원사에는 확정된 협정가만 공지됩니다.',whoLine(esc(CFG.dealer)+' '+esc(CFG.dealerPerson),'지정 대리점','var(--info)'))+
+    negCard('dealer')+
+    '<section class="card"><div class="cardh"><h2>현재 적용 협정가</h2><span class="sub">10월</span></div><div class="tblwrap"><table class="t tier"><thead><tr><th>규격 · 20L</th><th>협정가</th><th>통당 보전</th></tr></thead><tbody>'+cur+'</tbody></table></div>'+
+      '<p class="hint">단가 보전은 대리점 화면에만 표시됩니다. 협동조합·사장님 화면에는 나오지 않습니다.</p><button class="btn block" data-act="neg-new">'+ic('doc')+(NEG.status==='agreed'?'새 단가 제안 작성':'제안 수정')+'</button></section>'+foot();
+};
+function coopNeg(seg){
+  var ex=negExtraSave();
+  return ph('협동조합 · 단가 협의','대리점 제안을<br>원장 근거로 협의합니다','대리점과 협동조합 임원만 보는 공간입니다. 합의되면 시행일에 협정가가 자동 적용되고, 회원사에는 확정 내용만 공지됩니다.')+seg+
+    negCard('coop')+
+    '<section class="card tight"><div class="cardh"><h2>2구간에 도달하면</h2><span class="sub">9월 물량 기준 추정</span></div><div class="stat"><span class="v">'+cnt(ex,'won','원')+'</span><span class="hint">회원사 추가 절감액 / 월 · 연 환산 '+man(ex*12)+'만 원</span></div></section>'+foot();
 }
 
 /* ================= 렌더 ================= */
@@ -1194,9 +1295,11 @@ var TOUR=[
   {role:'dealer',scr:'entry',t:'dmap',x:'<b>대리점 화면</b>입니다. 전화 주문이 오면 <b>지도에서 구를 눌러</b> 회원사를 찾고 대리 발주로 등록합니다.'},
   {role:'dealer',scr:'route',t:'route',x:'오늘 <b>납품 경로</b>와 진행 상태, 월간 발주 일정을 함께 봅니다.'},
   {role:'dealer',scr:'settle',t:'cmp',x:'총판 단가 보전은 <b>원장에 기록된 발주에만</b> 지급됩니다. 그래서 대리점은 모든 주문을 원장에 등록합니다.'},
+  {role:'dealer',scr:'price',t:'neg',x:'총판 조건을 받으면 <b>단가 협의</b>에서 협동조합에 구간 협정가를 제안합니다. 단가 보전 금액은 <b>대리점 화면에만</b> 보입니다.'},
   {role:'coop',scr:'dash',t:'net',x:'<b>협동조합 화면</b>입니다. 3개사의 발주·납품·집계가 <b>실시간</b>으로 모입니다.'},
   {role:'coop',scr:'map',t:'coopmap',x:'구별 물량과 참여 현황을 <b>지도</b>로 봅니다. 회색 점은 아직 참여하지 않은 회원입니다.'},
-  {role:'coop',scr:'settle',t:'paper',x:'월 정산서는 원장에서 <b>자동 작성</b>되어 총판에 그대로 제출됩니다.'},
+  {role:'coop',scr:'settle',cv:'neg',t:'negc',t2:'negcard',x:'대리점 제안을 <b>원장 근거</b>(최근 물량·정기 발주)로 검토하고 역제안합니다. 협의는 2자만 보고, 회원사에는 <b>확정 협정가만</b> 공지됩니다.'},
+  {role:'coop',scr:'settle',cv:'settle',t:'paper',x:'월 정산서는 원장에서 <b>자동 작성</b>되어 총판에 그대로 제출됩니다.'},
   {role:'coop',scr:'members',t:'rules',x:'참여 기준은 <b>모든 회원에게 동일</b>합니다. 우리 가게 예상 절감액도 바로 계산됩니다.'}
 ];
 function renderTour(){
@@ -1204,12 +1307,13 @@ function renderTour(){
   var st=TOUR[S.tour],last=S.tour===TOUR.length-1;
   tourEl.hidden=false;
   tourEl.innerHTML='<div class="in" role="dialog" aria-label="시연 안내"><div class="tp">시연 둘러보기 '+(S.tour+1)+' / '+TOUR.length+'<span class="bar"><i style="width:'+((S.tour+1)/TOUR.length*100)+'%"></i></span></div><div class="tx">'+st.x+'</div><div class="nav"><button class="x" data-act="tour-end">닫기</button>'+(S.tour>0?'<button class="prev" data-act="tour-prev">이전</button>':'')+'<button class="next" data-act="tour-next">'+(last?'처음으로':'다음')+'</button></div></div>';
-  var tg=view.querySelector('[data-tour="'+st.t+'"]');if(tg)tg.classList.add('spot');
+  var tg=tourTarget(st);if(tg)tg.classList.add('spot');
 }
+function tourTarget(st){return view.querySelector('[data-tour="'+st.t+'"]')||(st.t2?view.querySelector('[data-tour="'+st.t2+'"]'):null);}
 function goTour(i){
-  S.tour=i;var st=TOUR[i],same=S.role===st.role&&S.scr[st.role]===st.scr;S.role=st.role;S.scr[st.role]=st.scr;closeSheet();
+  S.tour=i;var st=TOUR[i],same=S.role===st.role&&S.scr[st.role]===st.scr&&(!st.cv||S.cset===st.cv);S.role=st.role;S.scr[st.role]=st.scr;if(st.cv)S.cset=st.cv;closeSheet();
   if(same){view.querySelectorAll('.spot').forEach(function(e){e.classList.remove('spot');});renderTour();}else render();
-  var tg=view.querySelector('[data-tour="'+st.t+'"]');
+  var tg=tourTarget(st);
   if(tg){var r=tg.getBoundingClientRect(),topH=document.getElementById('top').getBoundingClientRect().bottom,tIn=tourEl.querySelector('.in'),lim=(tIn?tIn.getBoundingClientRect().top:innerHeight)-14,dy=0;
     if(r.bottom>lim){dy=r.bottom-lim;if(r.top-dy<topH+10)dy=r.top-topH-10;}else if(r.top<topH+10){dy=r.top-topH-10;}
     if(dy)window.scrollTo({top:window.scrollY+dy,behavior:REDUCED?'auto':'smooth'});}
@@ -1229,13 +1333,13 @@ function flowSheet(title,sub,rows,steps,extra){
 function orderFlow(sh){return [['발주 접수',sh,nowT()],['원장 기록','협정가 적용','즉시'],['대리점 전달',CFG.dealer,'즉시'],['협동조합 집계','10월 물량 반영','즉시']];}
 function paperSheet(){
   var sb=sepBySku();
-  var rows=[0,1,2].map(function(i){return '<tr><td>'+SKU(i).name+'</td><td>'+sb[i]+'</td><td>'+won(SKU(i).keep)+'</td><td>'+won(sb[i]*SKU(i).keep)+'</td></tr>';}).join('');
+  var rows=[0,1,2].map(function(i){return '<tr><td>'+SKU(i).name+'</td><td>'+sb[i]+'</td><td>'+won(SKU(i).deal)+'</td><td>'+won(sb[i]*SKU(i).deal)+'</td></tr>';}).join('');
   var mem=SHOPS.map(function(s){return '<tr><td>'+s.name+'</td><td>'+s.sep[0]+'</td><td>'+s.sep[1]+'</td><td>'+s.sep[2]+'</td><td>'+sum(s.sep)+'</td></tr>';}).join('');
   openSheet('<div class="between"><b style="font-size:16px;font-weight:600">총판 제출용 정산서</b><span class="chip warn">미리보기</span></div><div class="paper"><h3>정 산 서</h3>'+
     '<div class="pm"><span>정산 번호</span><b>CTS-2609-01</b><span>대상 기간</span><b>2026. 9. 1 ~ 9. 30</b><span>수신</span><b>'+esc(CFG.supplier)+'</b><span>지정 대리점</span><b>'+esc(CFG.dealer)+'</b><span>근거</span><b>CARTOS 발주 원장 '+SEP.length+'건 · 회원사 승인 '+confirmed()+'/12</b></div>'+
-    '<table><thead><tr><th>규격</th><th>수량(통)</th><th>통당 보전</th><th>보전액</th></tr></thead><tbody>'+rows+'</tbody><tfoot><tr><td>합계</td><td>'+sepTong()+'</td><td></td><td>'+won(keepT(sb))+'</td></tr></tfoot></table>'+
+    '<table><thead><tr><th>규격</th><th>수량(통)</th><th>협정가</th><th>공급가액</th></tr></thead><tbody>'+rows+'</tbody><tfoot><tr><td>합계</td><td>'+sepTong()+'</td><td></td><td>'+won(dealT(sb))+'</td></tr></tfoot></table>'+
     '<b style="margin-top:4px;font-weight:600">회원사별 수량</b><table><thead><tr><th>회원사</th><th>'+SKU(0).name+'</th><th>'+SKU(1).name+'</th><th>'+SKU(2).name+'</th><th>계</th></tr></thead><tbody>'+mem+'</tbody></table><span class="stampd">CARTOS 자동 작성</span></div>'+
-    '<p class="hint">시연용 예시 문서입니다. 실제 서비스에서는 엑셀·PDF로 출력됩니다.</p><button class="btn dark block" data-act="close">닫기</button>');
+    '<p class="hint">총판·대리점 간 거래 조건은 별도로 정산되며 이 문서에는 표시되지 않습니다. 시연용 예시 문서이며, 실제 서비스에서는 엑셀·PDF로 출력됩니다.</p><button class="btn dark block" data-act="close">닫기</button>');
 }
 function liveSheet(){
   var rows=[['shop','사장님','회원사 12곳 중 9곳 접속','var(--accent)'],['dealer','대리점',CFG.dealer+' 딜러 2명 · 배송 차량 1대 운행 중','var(--info)'],['coop','협동조합','운영진 3명 · 9월 정산 진행 중','var(--ok)']];
@@ -1282,6 +1386,7 @@ document.addEventListener('click',function(e){
     case 'tour-next':if(S.tour===TOUR.length-1){S.tour=null;S.role=null;closeSheet();render();}else goTour(S.tour+1);break;
     case 'tour-prev':goTour(Math.max(0,S.tour-1));break;
     case 'tour-end':S.tour=null;view.querySelectorAll('.spot').forEach(function(x){x.classList.remove('spot');});renderTour();break;
+    case 'theme':setTheme(curTheme()==='dark'?'light':'dark');render(true);toast('<span>'+(curTheme()==='dark'?'다크':'라이트')+' 모드로 바꿨습니다</span>');break;
     case 'live':liveSheet();break;
     case 'settings':settingsSheet();break;
     case 'cfg-reset':CFG=JSON.parse(JSON.stringify(DEF));try{localStorage.removeItem(STORE_KEY);}catch(x){}closeSheet();seedFeed();render();break;
@@ -1309,6 +1414,11 @@ document.addEventListener('click',function(e){
       flowSheet('대리 발주 등록 완료','주문번호 '+no3,[['회원사',s2.name+' ('+s2.gu+')'],['수량',sum(dq)+'통 · '+qtxt(dq)],['협정가','적용'],['단가 보전 예정','<span class="save">+'+won(keepT(dq))+'원</span>']],[['대리 발주 등록',CFG.dealer+' '+CFG.dealerPerson,nowT()],['원장 기록','협정가 적용','즉시'],['회원사 알림',s2.name+' 원장에 표시','즉시'],['협동조합 집계','10월 물량 반영','즉시']]);
       S.dQty=[1,1,0];render(true);}break;
     case 'paper':paperSheet();break;
+    case 'cset':S.cset=el.getAttribute('data-v');render(true);break;
+    case 'neg-counter':negCounterSheet();break;
+    case 'neg-accept':negAccept();break;
+    case 'neg-memo':openSheet('<b style="font-size:16px;font-weight:600">메모 남기기</b><p class="lead">'+(S.role==='dealer'?'협동조합 임원':esc(CFG.dealer))+'에게만 전달됩니다. 회원사에는 보이지 않습니다.</p><form class="form" id="memoform"><label>내용<textarea id="memotx" rows="3" placeholder="예: 동절기 수요 반영 부탁드립니다"></textarea></label><button class="btn dark block" type="submit">남기기</button></form>');break;
+    case 'neg-new':negNewSheet();break;
     case 'join':S.joined=true;render(true);break;
     case 'close':closeSheet();break;
     case 'see-coop':closeSheet();S.role='coop';S.scr.coop='dash';S.tour=null;render();break;
@@ -1319,6 +1429,17 @@ document.addEventListener('submit',function(e){
     CFG.coop=v('c_coop')||DEF.coop;CFG.dealer=v('c_dealer')||DEF.dealer;CFG.dealerPerson=v('c_person')||DEF.dealerPerson;CFG.supplier=v('c_sup')||DEF.supplier;CFG.thresh=Math.max(1,nn('c_th',10));CFG.sim=document.getElementById('c_sim').checked;
     for(var k=0;k<3;k++){var s=CFG.sku[k];s.name=v('s'+k+'n')||s.name;s.note=v('s'+k+'o')||s.note;s.normal=nn('s'+k+'m',s.normal);s.deal=nn('s'+k+'d',s.deal);s.buy=nn('s'+k+'b',s.buy);s.keep=nn('s'+k+'k',s.keep);}
     saveCfg();closeSheet();seedFeed();render();toast('<span>시연 설정을 적용했습니다</span>');}
+  if(e.target.id==='negform'){e.preventDefault();var t2=numv('ng2',4500),t3=Math.max(numv('ng3',6500),t2+500),mx=document.getElementById('ngmemo').value.trim();
+    NEG.cth=[0,t2,t3];NEG.status='countered';NEG.thread.push({by:'coop',t:'10/2(금) '+nowT(),x:esc(mx||'원장 기준 최근 3개월 물량을 반영해 구간 기준을 조정합니다.')});
+    closeSheet();render(true);toast('<span><b>역제안 전송</b> · '+esc(CFG.dealer)+'에만 전달</span>');}
+  if(e.target.id==='memoform'){e.preventDefault();var tx=document.getElementById('memotx').value.trim();if(!tx){closeSheet();return;}
+    NEG.thread.push({by:S.role==='dealer'?'dealer':'coop',t:'10/2(금) '+nowT(),x:esc(tx)});closeSheet();render(true);toast('<span>메모를 남겼습니다 · 상대방에게 알림</span>');}
+  if(e.target.id==='negnew'){e.preventDefault();var n2=numv('nn2',5000),n3=Math.max(numv('nn3',7000),n2+500),fresh=NEG.status==='agreed';
+    for(var k2=0;k2<3;k2++){var d=SKU(k2).deal,p1=numv('np'+k2+'1',negPrice(k2,1)),p2=numv('np'+k2+'2',negPrice(k2,2));NEG_OFF[k2]=[0,Math.max(0,d-p1),Math.max(0,d-Math.min(p1,p2))];}
+    if(fresh){NEG.no='PR-2612-01';NEG.title='12월 구간 협정가';NEG.eff='12/1(화)';NEG.thread=[];}else{NEG.no=NEG.no.replace(/-(\d+)$/,function(m,x){return '-'+String(+x+1).padStart(2,'0');});}
+    NEG.th=[0,n2,n3];NEG.cth=null;NEG.agreeNo=null;NEG.status='proposed';
+    NEG.thread.push({by:'dealer',t:'10/2(금) '+nowT(),x:esc(document.getElementById('nnmemo').value.trim()||(fresh?'총판 12월 정책 기준으로 구간 협정가를 제안드립니다.':'구간 기준과 단가를 수정해 다시 제안드립니다.'))});
+    closeSheet();render(true);toast('<span><b>단가 제안 전송</b> · 협동조합 임원에게만 전달</span>');}
   if(e.target.id==='dispform'){e.preventDefault();S.dispute=true;closeSheet();render(true);toast('<span><b>이의 신청 접수</b> · 대리점·협동조합에 전달</span>');}
 });
 document.addEventListener('input',function(e){
@@ -1327,12 +1448,48 @@ document.addEventListener('input',function(e){
 });
 document.addEventListener('keydown',function(e){if(e.key==='Escape'&&!sheet.hidden)closeSheet();});
 
+/* 단가 협의 시트 */
+function numv(id,d){var el=document.getElementById(id);if(!el)return d;var x=parseInt(String(el.value).replace(/[^0-9]/g,''),10);return isNaN(x)?d:x;}
+function negCounterSheet(){
+  openSheet('<b style="font-size:16px;font-weight:600">원장 근거로 역제안</b><p class="lead">구간 기준을 조정해 대리점에 돌려보냅니다. 단가는 대리점 제안 그대로 두고, 기준 물량만 바꿉니다.</p>'+evidBox()+
+    '<form class="form" id="negform"><div class="skuf"><label>2구간 기준 (L 이상)<input id="ng2" type="number" inputmode="numeric" value="4500"></label><label>3구간 기준 (L 이상)<input id="ng3" type="number" inputmode="numeric" value="6500"></label></div>'+
+    '<label>메모<textarea id="ngmemo" rows="2">정기 발주 확정 물량과 10월 추세를 보면 2구간은 4,500L가 적정합니다.</textarea></label><button class="btn dark block" type="submit">역제안 보내기</button></form>');
+}
+function negNewSheet(){
+  var fresh=NEG.status==='agreed',ps=[0,1,2].map(function(k){return '<div class="skuf"><span class="full" style="font-weight:600;font-size:12.5px">'+SKU(k).name+' <span class="hint">· 현재 협정가 '+won(SKU(k).deal)+'원</span></span><label>2구간 협정가<input id="np'+k+'1" type="number" inputmode="numeric" value="'+negPrice(k,1)+'"></label><label>3구간 협정가<input id="np'+k+'2" type="number" inputmode="numeric" value="'+negPrice(k,2)+'"></label></div>';}).join('');
+  openSheet('<b style="font-size:16px;font-weight:600">'+(fresh?'새 단가 제안 · 12월':'제안 수정 · '+NEG.title)+'</b><p class="lead">협동조합 임원에게만 전달됩니다. 원장 근거는 CARTOS가 자동으로 첨부합니다.</p>'+
+    '<form class="form" id="negnew"><div class="skuf"><label>2구간 기준 (L 이상)<input id="nn2" type="number" inputmode="numeric" value="'+NEG.th[1]+'"></label><label>3구간 기준 (L 이상)<input id="nn3" type="number" inputmode="numeric" value="'+NEG.th[2]+'"></label></div>'+ps+
+    '<label>메모<textarea id="nnmemo" rows="2" placeholder="예: 총판 정책 변경 사항"></textarea></label><button class="btn dark block" type="submit">제안 보내기</button></form>');
+}
+function negAccept(){
+  if(NEG.status==='agreed')return;
+  var th=negTh();NEG.status='agreed';NEG.agreeNo=NEG.no.replace('PR','AG');
+  NEG.thread.push({by:'sys',t:'10/2(금) '+nowT(),x:'양측 합의 · '+NEG.agreeNo+' · '+NEG.eff+' 시행 예약'});
+  render(true);
+  flowSheet('단가 합의 완료','합의 번호 '+NEG.agreeNo,[['구간 기준','2구간 '+won(th[1])+'L · 3구간 '+won(th[2])+'L'],['시행',NEG.eff+' 발주분부터'],['회원사 공지','확정 협정가만']],
+    [['양측 확정',esc(CFG.dealer)+' · 협동조합',nowT()],['시행 예약',NEG.eff,'자동'],['사장님 발주 화면 반영','구간 도달 시 자동','예정'],['회원사 공지','확정 협정가만','예정']]);
+}
+
 /* 툴팁 */
 function showTip(el,x,y){tip.textContent=el.getAttribute('data-tip');tip.hidden=false;var w=tip.offsetWidth,h=tip.offsetHeight,l=Math.max(8,Math.min(innerWidth-w-8,x-w/2)),t=y-h-12;if(t<8)t=y+16;tip.style.left=l+'px';tip.style.top=t+'px';}
 function hideTip(){tip.hidden=true;}
 document.addEventListener('pointermove',function(e){if(e.pointerType!=='mouse')return;var t=e.target.closest&&e.target.closest('[data-tip]');if(t)showTip(t,e.clientX,e.clientY);else hideTip();});
 document.addEventListener('pointerdown',function(e){var t=e.target.closest&&e.target.closest('[data-tip]');if(t&&e.pointerType!=='mouse'){showTip(t,e.clientX,e.clientY);clearTimeout(showTip._t);showTip._t=setTimeout(hideTip,1800);}else if(!t)hideTip();});
 window.addEventListener('scroll',hideTip,{passive:true});
+
+/* 화면 테마 (라이트/다크 · 이 기기에 저장) */
+var THEME_KEY='cartos_theme';
+function sysDark(){try{return window.matchMedia('(prefers-color-scheme: dark)').matches;}catch(e){return false;}}
+function curTheme(){var a=document.documentElement.getAttribute('data-theme');return a==='dark'||a==='light'?a:(sysDark()?'dark':'light');}
+function paintTheme(){
+  var t=curTheme(),b=document.getElementById('thm');
+  if(b){b.innerHTML=ic(t==='dark'?'sun':'moon');b.setAttribute('aria-label',t==='dark'?'라이트 모드로 보기':'다크 모드로 보기');b.title=t==='dark'?'라이트 모드':'다크 모드';}
+  var m=document.querySelector('meta[name="theme-color"]');if(!m){m=document.createElement('meta');m.name='theme-color';document.head.appendChild(m);}
+  m.content=t==='dark'?'#0D1013':'#EDEFF2';
+}
+function setTheme(t){document.documentElement.setAttribute('data-theme',t);try{localStorage.setItem(THEME_KEY,t);}catch(e){}paintTheme();}
+(function(){var t=null;try{t=localStorage.getItem(THEME_KEY);}catch(e){}if(t==='dark'||t==='light')document.documentElement.setAttribute('data-theme',t);paintTheme();
+  try{window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change',paintTheme);}catch(e){}})();
 
 /* 시작 */
 seedFeed();
